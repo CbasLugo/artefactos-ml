@@ -1,0 +1,12 @@
+# Los artefactos viven en la raiz; preparar.py los copia aca. No hace falta
+# versionar la copia.
+backend/app/ml/*.joblib
+backend/app/ml/*.pkl
+backend/app/ml/*.json
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
