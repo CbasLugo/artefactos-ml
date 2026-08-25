@@ -64,14 +64,24 @@ pantalla principal, sin parámetros.
 Viven en la raíz. `preparar.py` los copia a `backend/app/ml/`, que es donde
 la API los busca. No se versiona la copia.
 
-En producción no hace falta ese paso: la API los descarga sola si no los
-encuentra, usando estas variables:
+### En producción van en OCI, no acá
 
-```
-MODELO_URL=https://github.com/CbasLugo/artefactos-ml/raw/main/modelo_techmind_v2.joblib
-MATRIZ_HISTORICA_URL=https://github.com/CbasLugo/artefactos-ml/raw/main/matriz_historica.pkl
-SUGERENCIAS_BOTONES_URL=https://github.com/CbasLugo/artefactos-ml/raw/main/sugerencias_botones.json
-```
+> **Importante.** Este repositorio es para revisar y probar en local. En el
+> despliegue, las tres variables tienen que apuntar a **OCI Object Storage**:
+>
+> ```
+> MODELO_URL=https://objectstorage.<region>.oraclecloud.com/.../modelo_techmind_v2.joblib
+> MATRIZ_HISTORICA_URL=https://objectstorage.<region>.oraclecloud.com/.../matriz_historica.pkl
+> SUGERENCIAS_BOTONES_URL=https://objectstorage.<region>.oraclecloud.com/.../sugerencias_botones.json
+> ```
+>
+> La integración con OCI es el **requisito obligatorio número 4** del
+> hackathon. Apuntar el `.env` de producción a las URLs de GitHub la dejaría
+> sin cumplir, aunque la API funcione igual.
+>
+> Al reemplazar el modelo o la matriz hay que subirlos **a los dos lados**:
+> a OCI, que es de donde los toma producción, y acá, que es de donde los
+> toma quien quiera probar en local.
 
 ### El clasificador
 
