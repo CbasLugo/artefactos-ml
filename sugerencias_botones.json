@@ -13,14 +13,14 @@
       "documentos": 66
     },
     {
+      "termino": "oracle sql",
+      "categoria": "Bases de Datos",
+      "documentos": 59
+    },
+    {
       "termino": "subquery",
       "categoria": "Bases de Datos",
       "documentos": 100
-    },
-    {
-      "termino": "cte",
-      "categoria": "Bases de Datos",
-      "documentos": 83
     },
     {
       "termino": "jetpack compose",
@@ -58,9 +58,14 @@
       "documentos": 78
     },
     {
-      "termino": "estilos",
+      "termino": "pura",
       "categoria": "Frontend",
-      "documentos": 86
+      "documentos": 57
+    },
+    {
+      "termino": "borrow",
+      "categoria": "Programación General",
+      "documentos": 71
     },
     {
       "termino": "php artisan",
@@ -71,11 +76,6 @@
       "termino": "woocommerce",
       "categoria": "Backend",
       "documentos": 55
-    },
-    {
-      "termino": "msvc",
-      "categoria": "Programación General",
-      "documentos": 76
     }
   ]
 }

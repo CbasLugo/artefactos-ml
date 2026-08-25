@@ -58,7 +58,7 @@ pantalla principal, sin parámetros.
 | Archivo | Peso | Qué es |
 |---|--:|---|
 | `modelo_techmind_v2.joblib` | 5,9 MB | El clasificador |
-| `matriz_historica.pkl` | 50,2 MB | Los 38.257 documentos del corpus vectorizados |
+| `matriz_historica.pkl` | 27,0 MB | Los 38.257 documentos del corpus vectorizados |
 | `sugerencias_botones.json` | 2 KB | Términos de los botones |
 
 Viven en la raíz. `preparar.py` los copia a `backend/app/ml/`, que es donde
@@ -95,6 +95,23 @@ distribución real. Validación cruzada de 5 particiones: **0,7508 ± 0,0019**.
 | `categorias` | Categoría de cada documento |
 | `titulos` | Título de cada documento |
 | `extractos` | Primeros 200 caracteres del cuerpo |
+
+El vocabulario excluye las palabras vacías de los dos idiomas. El
+clasificador se entrena **sin** quitarlas —aportan algo de señal para
+decidir la categoría— pero para buscar documentos parecidos son ruido, y en
+una consulta corta llegan a dominar el resultado: "Jetpack Compose en
+Android… manejo de estado y ciclo de vida" traía como primer resultado un
+documento sobre redes TCP con 0,547 de similitud, y el 85 % de ese número lo
+aportaba la palabra `de`.
+
+No se usa `ENGLISH_STOP_WORDS` de scikit-learn tal cual: incluye términos
+que en un corpus técnico tienen contenido —`system`, `name`, `call`,
+`part`, `find`— y quitarlos empobrecería las búsquedas. Los técnicos cortos
+quedan protegidos: `go`, `net`, `api`, `ci`, `cd`, `io`, `ui` sobreviven
+aunque parezcan palabras vacías.
+
+Sacarlas también achicó el archivo de 50 a 27 MB: eran los términos con más
+entradas no nulas en la matriz dispersa.
 
 El vectorizador viaja adentro a propósito: un texto nuevo tiene que
 vectorizarse con el mismo vocabulario con el que se construyó la matriz, o
