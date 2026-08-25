@@ -162,6 +162,15 @@ con otra devuelve resultados distintos sin que nada falle a la vista. Numpy
 va fijado porque los pickles llevan arreglos serializados con numpy 2.x, y
 cargarlos con 1.x falla con `No module named 'numpy._core'`.
 
+## Cómo se generan
+
+`notebooks/sugerencias_y_relacionados.ipynb` produce `matriz_historica.pkl` y
+`sugerencias_botones.json`. Necesita `dataset_limpio.csv`, que sale del
+notebook de limpieza del repositorio principal.
+
+El `.joblib` lo genera `machine_learning/entrenamiento_modelo.ipynb`, allá
+mismo.
+
 ## Si se reentrena el modelo
 
 Hay que regenerar los tres, no solo el `.joblib`: la matriz guarda su
